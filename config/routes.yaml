@@ -1,5 +1,5 @@
-controllers:
+site_controllers:
     resource:
-        path: ../src/Controller/
-        namespace: App\Controller
+        path: ../src/Site/Application/Controller/Http
+        namespace: App\Site\Application\Controller\Http
     type: attribute
