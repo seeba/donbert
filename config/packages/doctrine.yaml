@@ -15,12 +15,19 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-            App:
-                type: attribute
+            Newsletter:
+                type: xml
                 is_bundle: false
-                dir: '%kernel.project_dir%/src'
-                prefix: 'App\Entity'
-                alias: App
+                dir: '%kernel.project_dir%/src/Newsletter/Infrastructure/DoctrineMapping'
+                prefix: 'App\Newsletter\Domain\Entity'
+                alias: App\Newsletter\Domain'
+            SharedVO:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Shared/Infrastructure/DoctrineMapping/ValueObject'
+                prefix: 'App\Shared\Domain\ValueObject'
+                alias: App\Shared\Domain'
+            
 
 when@test:
     doctrine:
