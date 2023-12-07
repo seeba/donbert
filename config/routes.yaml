@@ -3,3 +3,8 @@ site_controllers:
         path: ../src/Site/Application/Controller/Http
         namespace: App\Site\Application\Controller\Http
     type: attribute
+newsletter_controllers:
+    resource:
+        path: ../src/Newsletter/Application/Controller/Http
+        namespace: App\Newsletter\Application\Controller\Http
+    type: attribute
