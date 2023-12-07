@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Site\Application\Controller\Http;
+namespace App\Newsletter\Application\Controller\Http;
 
 //use App\User\Application\Command\CreateUserCommand;
-
-use App\Newsletter\Application\Form\NewsletterType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 // use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-class FooterController extends AbstractController
+#[Route('/newsletter/add', name:'app_newsletter_add_in_site', methods: ['POST'])]
+class AddToNewsletterController extends AbstractController
 {
     // use HandleTrait;
     
@@ -24,16 +23,13 @@ class FooterController extends AbstractController
     //     $this->messageBus = $messageBus;
     // }
     
-    public function __invoke(Request $request): Response
+    public function __invoke(Request $request): JsonResponse
     {
-        
-        $form = $this->createForm(NewsletterType::class, null, [
-            'action' => $this->generateUrl('app_newsletter_add_in_site')
-        ]);
-        
-        return $this->render('site/footer.html.twig', [
-            'form' => $form
+        // $command = new CreateUserCommand('6@wp.pl', 'wrz4jk94');
+        // $this->messageBus->dispatch($command);
+        return new JsonResponse([
+            'msg' => 'Zostałeś zapisany na powiadomienia', 
+            'status' => 1
         ]);
     }
-    
 }
