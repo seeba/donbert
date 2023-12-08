@@ -7,6 +7,7 @@ namespace App\Newsletter\Application\Controller\Http;
 //use App\User\Application\Command\CreateUserCommand;
 
 use App\Newsletter\Application\Command\AddNewsletterConsentCommand;
+use App\Newsletter\Application\Form\NewsletterType;
 use App\Shared\Domain\ValueObject\Email;
 use DateTime;
 use Exception;
@@ -31,20 +32,35 @@ class AddToNewsletterController extends AbstractController
     public function __invoke(Request $request): JsonResponse
     {
        
-        $command = new AddNewsletterConsentCommand(new Email('poczta@sebastianpluta.pl'), new DateTime());
-        $msg = 'Zostałeś zapisany na powiadomienie';
-        $status = 1;
-        try {
-            $this->messageBus->dispatch($command);
-        } catch (Exception $e) {
-            $msg = $e->getPrevious()->getMessage();
-           // $msg = 'Zapis na newsletter nie powiódł się';
-           $status = 0;
+        $form = $this->createForm(NewsletterType::class, null, [
+            'action' => $this->generateUrl('app_newsletter_add_in_site')
+        ]);
+        
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $data = $form->getData();
+            try {
+                $command = new AddNewsletterConsentCommand(new Email($data['email']), new DateTime());
+                $msg = 'Zostałeś zapisany na powiadomienie';
+                $status = 1;
+       
+                $this->messageBus->dispatch($command);
+
+            } catch (Exception $e) {
+                if ($e->getPrevious()) {
+                    $e = $e->getPrevious();
+                } 
+                $msg = $e->getMessage();
+                $status = 0;
+            }
+        
+            return new JsonResponse([
+                'msg' => $msg, 
+                'status' => $status
+            ]);
+
         }
         
-        return new JsonResponse([
-            'msg' => $msg, 
-            'status' => $status
-        ]);
     }
 }
