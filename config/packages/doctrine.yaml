@@ -15,6 +15,12 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
+            Logger:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Logger/Infrastructure/DoctrineMapping'
+                prefix: 'App\Logger\Domain\Entity'
+                alias: 'App\Logger\Domain'
             Newsletter:
                 type: xml
                 is_bundle: false
@@ -27,6 +33,7 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Shared/Infrastructure/DoctrineMapping/ValueObject'
                 prefix: 'App\Shared\Domain\ValueObject'
                 alias: App\Shared\Domain'
+            
             
 
 when@test:
