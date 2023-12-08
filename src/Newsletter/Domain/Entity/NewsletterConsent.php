@@ -14,19 +14,12 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class NewsletterConsent extends AggregateRoot
 {
 
-    private NewsletterConsentId $id;
-    private Email $email;
-    private DateTime $createdAt;
-    
     public function __construct(
-        NewsletterConsentId $id,
-        Email $email,
-        DateTime $createdAt
+        private NewsletterConsentId $id,
+        private Email $email,
+        private DateTime $createdAt
     )
     {   
-        $this->id = $id;
-        $this->email = $email;
-        $this->createdAt = $createdAt;
     }
 
     public function getCreatedAt()
