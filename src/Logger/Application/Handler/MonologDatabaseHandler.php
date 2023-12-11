@@ -17,6 +17,7 @@ class MonologDatabaseHandler extends AbstractProcessingHandler
 
     protected function write(LogRecord $record): void
     {
+
         $log = Log::createLog(
             $record->message,
             $record->context,
@@ -26,7 +27,8 @@ class MonologDatabaseHandler extends AbstractProcessingHandler
             $record->extra,
             $record->formatted
         );
-
+      
         $this->logRepository->save($log);
+    
     }
 }

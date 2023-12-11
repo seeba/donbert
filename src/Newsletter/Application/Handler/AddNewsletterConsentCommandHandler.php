@@ -48,8 +48,9 @@ class AddNewsletterConsentCommandHandler
         $this->newsletterConsentRepository->save($newsletterConsent);
         
         foreach ($newsletterConsent->pullDomainEvents() as $domainEvent) {
-            dump($domainEvent);
-            $this->eventDispatcher->dispatch($domainEvent, $domainEvent::NAME);      
+          //  dump($this->eventDispatcher);die;
+            $this->eventDispatcher->dispatch($domainEvent, $domainEvent::NAME);  
+             
         }   
         
     }

@@ -1,6 +1,12 @@
 monolog:
     channels:
         - deprecation # Deprecations are logged in the dedicated "deprecation" channel when it exists
+        - "doctrinelogger"
+    handlers:
+        doctrinelogger:
+            type: service
+            id: App\Logger\Application\Handler\MonologDatabaseHandler
+            channels: ["doctrinelogger"]
 
 when@dev:
     monolog:

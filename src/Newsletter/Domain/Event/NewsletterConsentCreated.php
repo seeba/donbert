@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Newsletter\Domain\Event;
 
 use App\Newsletter\Domain\Entity\NewsletterConsentId;

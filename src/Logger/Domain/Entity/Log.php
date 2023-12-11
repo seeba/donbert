@@ -7,7 +7,7 @@ use DateTime;
 
 class Log extends AggregateRoot 
 {
-    private ?string $id = null;
+    private LogId $id;
     private ?string $message = null;
     private array $context = [];
     private int $level;
@@ -26,7 +26,7 @@ class Log extends AggregateRoot
     /**
      * Get the value of id
      */
-    public function getId(): ?string
+    public function getId(): LogId
     {
         return $this->id;
     }

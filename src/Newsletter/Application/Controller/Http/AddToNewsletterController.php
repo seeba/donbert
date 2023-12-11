@@ -36,10 +36,10 @@ class AddToNewsletterController extends AbstractController
             'action' => $this->generateUrl('app_newsletter_add_in_site')
         ]);
         
-        $form->handleRequest($request);
+       $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $data = $form->getData();
+       if ($form->isValid()) {
+           $data = $form->getData();
             try {
                 $command = new AddNewsletterConsentCommand(new Email($data['email']), new DateTime());
                 $msg = 'Zostałeś zapisany na powiadomienie';

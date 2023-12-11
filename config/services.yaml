@@ -19,6 +19,11 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+    App\Newsletter\Domain\EventListener\NewsletterConsentCreatedListener:
+        tags: 
+            - { name: kernel.event_listener, event: newsletter_consent.created}
+        arguments:
+            - '@monolog.logger.doctrinelogger'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
