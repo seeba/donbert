@@ -7,14 +7,14 @@ namespace App\Product\Domain\Entity;
 use App\Shared\Aggregate\AggregateRoot;
 use Doctrine\Common\Collections\ArrayCollection;
 
-class Product extends AggregateRoot
+class Category extends AggregateRoot
 {
     public function __construct(
-        private ProductId $id,
+        private CategoryId $id,
         private string $name,
-        private $categories = new ArrayCollection(),
-        private $productFeatures = new ArrayCollection(),
-        private $variants = new ArrayCollection()
+        private $parents = new ArrayCollection(),
+        private $children = new ArrayCollection(),
+        private $products = new ArrayCollection()
     )
     {    
     }

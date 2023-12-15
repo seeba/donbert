@@ -33,6 +33,18 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Shared/Infrastructure/DoctrineMapping/ValueObject'
                 prefix: 'App\Shared\Domain\ValueObject'
                 alias: App\Shared\Domain'
+            Product:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Product/Infrastructure/DoctrineMapping'
+                prefix: 'App\Product\Domain\Entity'
+                alias: App\Product\Domain'
+            ProductFeature:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Product/Infrastructure/DoctrineMapping/ProductFeature'
+                prefix: 'App\Product\Domain\Entity\ProductFeature'
+                alias: App\Product\Domain\Entity'
             
             
 

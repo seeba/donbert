@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+<entity name="App\Product\Domain\Entity\Product" table="products">
+    <embedded name="id" class="App\Product\Domain\Entity\ProductId" use-column-prefix="false"/>
+    <field name="name" type="string" />
+    <many-to-many field="categories" target-entity="App\Product\Domain\Entity\Category" inversed-by="products">
+        <join-table name="product_category">
+            <join-columns>
+                <join-column name="product_id" referenced-column-name="id" />
+            </join-columns>
+            <inverse-join-columns>
+                <join-column name="category_id" referenced-column-name="id" />
+            </inverse-join-columns>
+        </join-table>
+    </many-to-many>
+    <many-to-many field="productFeatures" target-entity="App\Product\Domain\Entity\ProductFeature\ProductFeature">
+        <join-table name="product_feature">
+            <join-columns>
+                <join-column name="product_id" referenced-column-name="id" />
+            </join-columns>
+            <inverse-join-columns>
+                <join-column name="feature_id" referenced-column-name="id" />
+            </inverse-join-columns>
+        </join-table>
+    </many-to-many>
+    <one-to-many field="variants" target-entity="App\Product\Domain\Entity\Variant" mapped-by="product" />
+    
+</entity>
+
+</doctrine-mapping>

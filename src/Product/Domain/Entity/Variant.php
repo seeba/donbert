@@ -9,7 +9,9 @@ use App\Shared\Aggregate\AggregateRoot;
 class Variant extends AggregateRoot
 {
     public function __construct(
-        private VariantId $id
+        private VariantId $id,
+        private string $name,
+        private Product $product
     )
     {    
     }
